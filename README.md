@@ -8,8 +8,8 @@
 - redis
 
 # 需要环境
-node.js > 8
-redis
+- node.js > 8
+- redis
 
 # 命令
 ```
