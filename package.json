@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "pm2 start app.js",
+    "start": "pm2 start app.js --name base-api",
     "stop": "pm2 stop app.js",
     "dev": "nodemon --harmony app.js"
   },

@@ -42,10 +42,8 @@ app.use(async (ctx, next) => {
   } else {
     ctx.body = {
       success: false,
-      message: {
-        code: 401,
-        text: '身份认证失败'
-      }
+      code: 401,
+      message: '身份认证失败'
     }
   }
 });

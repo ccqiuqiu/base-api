@@ -13,6 +13,11 @@ async function login(ctx) {
   }
 }
 
+async function test(ctx) {
+    ctx.body = createBody('', true, '成功')
+}
+
 exports.register = function (router) {
   router.post('/public/login', koaBody, login)
+  router.get('/public/test', koaBody, test)
 }
