@@ -5,6 +5,6 @@ const db = require('../db/index')
 
 exports.getUser = async user => {
   return await db.sequelize.User.findOne({
-    where: {userName: user.userName, passWord: user.passWord}
+    where: {userName: user.userName, password: user.password}
   })
 }

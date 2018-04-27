@@ -28,7 +28,7 @@ app.use(log4js.koaLogger(logger, {level: 'auto'})) // 日志中间件
 app.use(compress()) // 数据压缩中间件
 app.use(cors({credentials: true})) // 跨域中间件
 app.use(session({ maxAge: 20 * 60 * 1000, store: new redisStore()}))// koa-session2中间件
-app.use(serve('static', {maxage: 2 * 60 * 1000}))// 静态文件目录
+app.use(serve('static', {maxage: 2 * 60 * 1000}))// 设置静态文件中间件
 
 // 验证登录
 app.use(async (ctx, next) => {

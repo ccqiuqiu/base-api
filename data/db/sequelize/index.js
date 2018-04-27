@@ -10,7 +10,7 @@ const logger = log4js.getLogger('db')
 
 const client = new Sequelize('baseApi', 'root', 'cc', {
   host: '127.0.0.1',
-  dialect: 'mysql',
+  dialect: 'mysql', // 'mysql'|'mariadb'|'sqlite'|'postgres'|'mssql'
   pool: {
     max: 5,
     min: 0,
@@ -22,7 +22,7 @@ const client = new Sequelize('baseApi', 'root', 'cc', {
 });
 const models = {};
 
-// 自动读取model并导入到数据库
+// 自动读取model并建表
 fs.readdirSync(__dirname + '/models')
   .filter(function (file) {
     return (file.indexOf('.') !== 0) && (file !== 'index.js');

@@ -4,7 +4,7 @@ const koaBody = require('koa-body')()
 
 async function login(ctx) {
   const data = ctx.request.body
-  const user = await dataProvider.User.getUser(data.user)
+  const user = await dataProvider.User.getUser(data)
   if (user) {
     ctx.body = createBody()
     ctx.session.user = JSON.stringify(user)
@@ -14,7 +14,8 @@ async function login(ctx) {
 }
 
 async function test(ctx) {
-    ctx.body = createBody('', true, '成功')
+  console.log(ctx.request.query)
+  ctx.body = createBody('', true, '成功')
 }
 
 exports.register = function (router) {
