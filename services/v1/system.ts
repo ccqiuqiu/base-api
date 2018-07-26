@@ -9,7 +9,7 @@ async function getAuth(ctx) {
   const user = ctx.session.user
   let {resources, menus} = ctx.session.auth
   if (typeof resources !== 'string') {
-    resources = (resources as any[]).map((res: any) => res.code)
+    resources = (resources as any[]).map((res: any) => res.url.replace(/^\/.*?\/(.*)/, '$1'))
   }
   ctx.body = createBody({user, auth: {resources, menus}})
 }

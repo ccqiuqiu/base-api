@@ -10,9 +10,6 @@ export default class Resource extends BaseEntity {
   @Column({length: 32})
   public name: string
 
-  @Column({length: 32, unique: true})
-  public code: string
-
-  @Column({length: 64})
+  @Column({length: 64, unique: true})
   public url: string
 }
