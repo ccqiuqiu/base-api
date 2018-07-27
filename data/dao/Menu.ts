@@ -12,7 +12,7 @@ class UserDao extends BaseDao<Menu> {
     const manager = this.getManager()
     return manager.getTreeRepository(Menu).findTrees()
   }
-  public saveMenu(menu: any) {
+  public async saveMenu(menu: any) {
     const manager = this.getManager()
     if (menu.parentId) {
       const parentMenu = new Menu(menu.parentId)
@@ -21,6 +21,11 @@ class UserDao extends BaseDao<Menu> {
     } else {
       menu.parent = null
     }
+    // 顺序
+    const maxSort: Menu = await this.getManager().findOne<Menu>(this.entityClass, {
+      order: {sort: 'DESC'},
+    })
+    menu.sort = maxSort ? maxSort.sort + 1 : 1
     return manager.save(this.entityClass, menu)
   }
 }

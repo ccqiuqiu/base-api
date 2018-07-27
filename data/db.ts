@@ -16,7 +16,7 @@ export const dbInit = async (app) => {
     entities: [ __dirname + '/entity/*.ts', __dirname + '/entity/*.js'],
     logging: 'all', // ['query', 'error'],
     logger: new myLogger(),
-    synchronize: false, // 生产不能设置true
+    synchronize: true, // 生产不能设置true
   }).then((connection: any) => {
     console.log('数据库连接成功')
     app.listen(3000)
