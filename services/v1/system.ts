@@ -5,14 +5,6 @@ import createBody from './createBody'
 import * as Dao from '../../data/dao/index'
 import {addParentId} from '../../utils'
 
-async function getAuth(ctx) {
-  const user = ctx.session.user
-  let {resources, menus} = ctx.session.auth
-  if (typeof resources !== 'string') {
-    resources = (resources as any[]).map((res: any) => res.url.replace(/^\/.*?\/(.*)/, '$1'))
-  }
-  ctx.body = createBody({user, auth: {resources, menus}})
-}
 // 用户
 async function searchUser(ctx) {
   const re = await Dao.User.findPaged(ctx.request.body)
@@ -133,8 +125,6 @@ async function getDashboard(ctx) {
 }
 
 export default (routes: any, prefix: string) => {
-  // 获取权限
-  routes.post(prefix + '/system/getAuth', getAuth)
   // 用户
   routes.post(prefix + '/page/searchUser', searchUser)
   routes.post(prefix + '/page/saveUser', saveUser)

@@ -54,8 +54,8 @@ export const hasAuth = (ctx: Context): boolean => {
   url = url.replace(/^(\/.*?)(\/.*?)(\/[^\/|\?]*).*/, '$2$3')
   // '/base'开头的url是只要登录了就能访问的，比如用户的权限、站内通知、首页的一些数据等
   if (url.indexOf('/base/') !== 0) {
-    // 白名单                       获取选项             获取用户权限          获取CRUD页面
-    const whiteList: string[] = ['/page/getOptions', '/system/getAuth', '/page/getPage']
+    // 白名单
+    const whiteList: string[] = []
     // 不在白名单的url要校验资源权限
     if (!whiteList.includes(url)) {
       const resources = ctx.session.auth.resources

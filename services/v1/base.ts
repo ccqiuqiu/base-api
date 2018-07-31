@@ -39,6 +39,7 @@ async function todoList(ctx) {
     link: '/baseData/page/user'
   }))
 }
+
 async function messageList(ctx) {
 
   const re: any = await Dao.Dashboard.findPaged(ctx.request.body)
@@ -66,6 +67,58 @@ async function chartDemo(ctx) {
     settings: {}
   })
 }
+async function getOptions(ctx) {
+  const {code, type} = ctx.request.query
+  let options: any = ''
+  switch (code) {
+    case 'menuTree':
+      options = await Dao.Menu.findTrees()
+      break
+    case 'role':
+      const roles = await Dao.Role.find()
+      options = {
+        columns: [
+          {prop: 'name', label: '角色名'},
+          {prop: 'code', label: '角色编码'},
+        ],
+        rows: roles
+      }
+      break
+    case 'resource':
+      const res = await Dao.Resource.find()
+      options = {
+        columns: [
+          {prop: 'id', label: 'ID'},
+          {prop: 'name', label: '名称'},
+          {prop: 'code', label: '代码'},
+          {prop: 'url', label: 'URL', width: '160px'},
+        ],
+        rows: res
+      }
+      break
+  }
+  ctx.body = createBody(options)
+}
+
+
+async function getAuth(ctx) {
+  const user = ctx.session.user
+  let {resources, menus} = ctx.session.auth
+  if (typeof resources !== 'string') {
+    resources = (resources as any[]).map((res: any) => res.url.replace(/^\/.*?\/(.*)/, '$1'))
+  }
+  ctx.body = createBody({user, auth: {resources, menus}})
+}
+
+async function getPageOptions(ctx) {
+  const pageCode = ctx.params.code
+  const re = await Dao.Page.findOne({pageCode})
+  if (re) {
+    ctx.body = createBody(re)
+  } else {
+    ctx.body = createBody(null, false, '暂无数据')
+  }
+}
 
 export default (routes: any, prefix: string) => {
   routes.post(prefix + '/base/getUserDashboard', getUserDashboard)
@@ -78,4 +131,8 @@ export default (routes: any, prefix: string) => {
   routes.post(prefix + '/base/todoList', todoList)
   routes.post(prefix + '/base/messageList', messageList)
   routes.post(prefix + '/base/chartDemo', chartDemo)
+  routes.post(prefix + '/base/getOptions', getOptions)
+  routes.post(prefix + '/base/getPageOptions/:code', getPageOptions)
+  // 获取权限
+  routes.post(prefix + '/base/getAuth', getAuth)
 }

@@ -4,38 +4,6 @@
 import createBody from './createBody'
 import * as Dao from '../../data/dao'
 
-async function getOptions(ctx) {
-  const {code, type} = ctx.request.query
-  let options: any = ''
-  switch (code) {
-    case 'menuTree':
-      options = await Dao.Menu.findTrees()
-      break
-    case 'role':
-      const roles = await Dao.Role.find()
-      options = {
-        columns: [
-          {prop: 'name', label: '角色名'},
-          {prop: 'code', label: '角色编码'},
-        ],
-        rows: roles
-      }
-      break
-    case 'resource':
-      const res = await Dao.Resource.find()
-      options = {
-        columns: [
-          {prop: 'id', label: 'ID'},
-          {prop: 'name', label: '名称'},
-          {prop: 'code', label: '代码'},
-          {prop: 'url', label: 'URL', width: '160px'},
-        ],
-        rows: res
-      }
-      break
-  }
-  ctx.body = createBody(options)
-}
 async function searchPage(ctx) {
   const params = ctx.request.body
   const re = await Dao.Page.findPaged(params)
@@ -61,10 +29,8 @@ async function delPage(ctx) {
 }
 
 export default (routes: any, prefix: string) => {
-  routes.post(prefix + '/page/getOptions', getOptions)
   routes.post(prefix + '/page/searchPage', searchPage)
   routes.post(prefix + '/page/getPage/:code', getPage)
   routes.post(prefix + '/page/delPage/:id', delPage)
   routes.post(prefix + '/page/savePage', savePage)
-  routes.post(prefix + '/page/getOptions', getOptions)
 }
