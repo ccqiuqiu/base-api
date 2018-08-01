@@ -11,7 +11,7 @@ async function getUserDashboard(ctx) {
 }
 async function getAllDashboard(ctx) {
   const re = await Dao.Dashboard.findPaged({pageSize: 0})
-  ctx.body = createBody(re)
+  ctx.body = createBody(re.rows)
 }
 async function saveUserDashboard(ctx) {
   const re = await Dao.User.saveUserDashboard(ctx.session.user.id, ctx.request.body.userDashboards)
@@ -120,6 +120,10 @@ async function getPageOptions(ctx) {
   }
 }
 
+async function optionsDemo(ctx) {
+  ctx.body = createBody([{label: 'demo1', value : 1}, {label: 'demo2', value : 2}])
+}
+
 export default (routes: any, prefix: string) => {
   routes.post(prefix + '/base/getUserDashboard', getUserDashboard)
   routes.post(prefix + '/base/getAllDashboard', getAllDashboard)
@@ -133,6 +137,7 @@ export default (routes: any, prefix: string) => {
   routes.post(prefix + '/base/chartDemo', chartDemo)
   routes.post(prefix + '/base/getOptions', getOptions)
   routes.post(prefix + '/base/getPageOptions/:code', getPageOptions)
+  routes.post(prefix + '/base/optionsDemo', optionsDemo)
   // 获取权限
   routes.post(prefix + '/base/getAuth', getAuth)
 }

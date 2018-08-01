@@ -55,7 +55,7 @@ app.use(async (ctx, next) => {
       ctx.body = {
         success: false,
         error: {
-          code: 402,
+          code: 403,
           message: '越权操作，请联系管理员'
         },
       }
