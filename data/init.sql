@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 26/07/2018 15:08:58
+ Date: 03/08/2018 13:52:09
 */
 
 SET NAMES utf8mb4;
@@ -37,14 +37,14 @@ CREATE TABLE `dashboard` (
 -- Records of dashboard
 -- ----------------------------
 BEGIN;
-INSERT INTO `dashboard` VALUES ('210a5a5a-0e20-4871-8809-956d824a6395', '新用户', 'info', '#53BEEA', 'user', '/base/userNum', '2018-07-24 16:18:43.029491', '2018-07-24 16:20:27.000000');
-INSERT INTO `dashboard` VALUES ('4ace586e-104f-484c-a73e-afc4f8b1b5c4', '图表2', 'funnel', '#CCB507', 'chart', '/base/chartDemo', '2018-07-24 16:23:43.428023', '2018-07-24 16:24:41.000000');
-INSERT INTO `dashboard` VALUES ('4b79eadd-bd7b-4c04-b14d-fc61a8459e49', '我的消息', 'table', NULL, 'table', '/base/messageList', '2018-07-24 16:22:22.837350', '2018-07-24 16:22:22.837350');
-INSERT INTO `dashboard` VALUES ('5c1b4798-781d-450e-a9f0-a6f9e6076a38', '订单数量', 'info', '#49A361', 'view', '/base/newOrder', '2018-07-24 16:19:07.753772', '2018-07-24 16:20:33.000000');
-INSERT INTO `dashboard` VALUES ('61e038bd-4957-44a5-b2f0-e2e87c6b7975', '图表1', 'histogram', '#CD0E8A', 'chart', '/base/chartDemo', '2018-07-24 16:23:05.465372', '2018-07-24 16:23:05.465372');
-INSERT INTO `dashboard` VALUES ('b001615c-91ca-4327-8f12-4c9b9d75dcad', '待办任务', 'list', '#15979C', 'menu', '/base/todoList', '2018-07-24 16:22:02.328600', '2018-07-24 16:22:02.328600');
-INSERT INTO `dashboard` VALUES ('b18e9edf-7673-4ce0-a6ba-e9da7dcbb42b', '我的工单', 'info', '#CD5542', 'drag', '/base/workNum', '2018-07-24 16:21:24.566937', '2018-07-24 16:21:24.566937');
-INSERT INTO `dashboard` VALUES ('fce95764-83a7-4b01-bf83-2308f8e8e035', '未读信息', 'info', '#E79F3C', 'cascader', '/base/messageNum', '2018-07-24 16:19:50.205610', '2018-07-24 16:20:38.000000');
+INSERT INTO `dashboard` VALUES ('210a5a5a-0e20-4871-8809-956d824a6395', '新用户', 'info', '#53BEEA', 'user', '/v1/base/userNum', '2018-07-24 16:18:43.029491', '2018-08-01 14:28:06.000000');
+INSERT INTO `dashboard` VALUES ('4ace586e-104f-484c-a73e-afc4f8b1b5c4', '图表2', 'funnel', '#CCB507', 'chart', '/v1/base/chartDemo', '2018-07-24 16:23:43.428023', '2018-08-01 14:28:43.000000');
+INSERT INTO `dashboard` VALUES ('4b79eadd-bd7b-4c04-b14d-fc61a8459e49', '我的消息', 'table', NULL, 'table', '/v1/base/messageList', '2018-07-24 16:22:22.837350', '2018-08-01 14:28:33.000000');
+INSERT INTO `dashboard` VALUES ('5c1b4798-781d-450e-a9f0-a6f9e6076a38', '订单数量', 'info', '#49A361', 'view', '/v1/base/newOrder', '2018-07-24 16:19:07.753772', '2018-08-01 14:28:10.000000');
+INSERT INTO `dashboard` VALUES ('61e038bd-4957-44a5-b2f0-e2e87c6b7975', '图表1', 'histogram', '#CD0E8A', 'chart', '/v1/base/chartDemo', '2018-07-24 16:23:05.465372', '2018-08-01 14:28:38.000000');
+INSERT INTO `dashboard` VALUES ('b001615c-91ca-4327-8f12-4c9b9d75dcad', '待办任务', 'list', '#15979C', 'menu', '/v1/base/todoList', '2018-07-24 16:22:02.328600', '2018-08-01 14:28:27.000000');
+INSERT INTO `dashboard` VALUES ('b18e9edf-7673-4ce0-a6ba-e9da7dcbb42b', '我的工单', 'info', '#CD5542', 'drag', '/v1/base/workNum', '2018-07-24 16:21:24.566937', '2018-08-01 14:28:23.000000');
+INSERT INTO `dashboard` VALUES ('fce95764-83a7-4b01-bf83-2308f8e8e035', '未读信息', 'info', '#E79F3C', 'cascader', '/v1/base/messageNum', '2018-07-24 16:19:50.205610', '2018-08-01 14:28:15.000000');
 COMMIT;
 
 -- ----------------------------
@@ -56,10 +56,10 @@ CREATE TABLE `menu` (
   `name` varchar(32) NOT NULL,
   `url` varchar(64) NOT NULL,
   `icon` varchar(32) DEFAULT NULL,
+  `sort` int(11) NOT NULL,
   `parentId` varchar(255) DEFAULT NULL,
   `_parentId` varchar(255) DEFAULT NULL,
   `mpath` varchar(255) DEFAULT '',
-  `sort` int(11) NOT NULL,
   `addTime` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   `updateTime` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`id`),
@@ -71,14 +71,14 @@ CREATE TABLE `menu` (
 -- Records of menu
 -- ----------------------------
 BEGIN;
-INSERT INTO `menu` VALUES ('0043e434-ad00-4920-b2c6-417be5a98e77', 'Dashboard管理', 'dashboard', '', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', '', 7, '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
-INSERT INTO `menu` VALUES ('24f832d8-9da6-4715-ad25-f4f74a21ae36', '资源管理', '/baseData/page/resource', '', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', '', 4, '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
-INSERT INTO `menu` VALUES ('2b437fe2-b053-4076-b4b2-d5ddd5289089', '菜单管理', '/system/menu', '', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', '', 3, '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
-INSERT INTO `menu` VALUES ('2e4d1f07-d34a-4698-9b6b-9109febc927c', '基础数据', '', 'form', NULL, NULL, '', 2, '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
-INSERT INTO `menu` VALUES ('55d167cf-00be-4dbd-ba85-3475318269a0', '角色管理', '/baseData/page/role', '', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', '', 5, '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
-INSERT INTO `menu` VALUES ('bd4e1000-e934-44f1-be7e-ceac5f73f80e', '动态页面', '/baseData/pageList', '', '2e4d1f07-d34a-4698-9b6b-9109febc927c', '2e4d1f07-d34a-4698-9b6b-9109febc927c', '', 8, '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
-INSERT INTO `menu` VALUES ('d19c4517-37ad-4496-bce6-f62fdc5aeebd', '系统管理', '', 'system', NULL, NULL, '', 1, '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
-INSERT INTO `menu` VALUES ('e096b9c3-2c21-4f1c-8af9-3ce55c49559c', '用户管理', 'user', 'user', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', '', 6, '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
+INSERT INTO `menu` VALUES ('0043e434-ad00-4920-b2c6-417be5a98e77', 'Dashboard管理', 'dashboard', '', 7, 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', '', '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
+INSERT INTO `menu` VALUES ('24f832d8-9da6-4715-ad25-f4f74a21ae36', '资源管理', '/baseData/page/resource', '', 4, 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', '', '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
+INSERT INTO `menu` VALUES ('2b437fe2-b053-4076-b4b2-d5ddd5289089', '菜单管理', '/system/menu', '', 3, 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', '', '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
+INSERT INTO `menu` VALUES ('2e4d1f07-d34a-4698-9b6b-9109febc927c', '基础数据', '', 'form', 2, NULL, NULL, '', '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
+INSERT INTO `menu` VALUES ('55d167cf-00be-4dbd-ba85-3475318269a0', '角色管理', '/baseData/page/role', '', 5, 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', '', '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
+INSERT INTO `menu` VALUES ('bd4e1000-e934-44f1-be7e-ceac5f73f80e', '动态页面', '/baseData/pageList', '', 8, '2e4d1f07-d34a-4698-9b6b-9109febc927c', '2e4d1f07-d34a-4698-9b6b-9109febc927c', '', '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
+INSERT INTO `menu` VALUES ('d19c4517-37ad-4496-bce6-f62fdc5aeebd', '系统管理', '', 'system', 1, NULL, NULL, '', '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
+INSERT INTO `menu` VALUES ('e096b9c3-2c21-4f1c-8af9-3ce55c49559c', '用户管理', 'user', 'user', 6, 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', 'd19c4517-37ad-4496-bce6-f62fdc5aeebd', '', '2018-07-24 14:44:57.376540', '2018-07-24 14:44:57.431608');
 COMMIT;
 
 -- ----------------------------
@@ -253,6 +253,20 @@ CREATE TABLE `user-dashboard` (
   CONSTRAINT `FK_20bd46582e6e556bacf96d2b29c` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
   CONSTRAINT `FK_e5143f83abc44fc0fb93fad9c8e` FOREIGN KEY (`dashboardId`) REFERENCES `dashboard` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user-dashboard
+-- ----------------------------
+BEGIN;
+INSERT INTO `user-dashboard` VALUES ('1b01d5ac-a398-4c44-b8c4-f460bbc91907', 2, 0, 2, 3, '1', '314e3e04-cb2f-46f7-83a1-013a728ef2db', '5c1b4798-781d-450e-a9f0-a6f9e6076a38', '2018-08-02 15:32:25.951816', '2018-08-02 15:32:25.951816');
+INSERT INTO `user-dashboard` VALUES ('82fb4446-c1bc-488d-92be-af87457a03fd', 6, 0, 2, 3, '3', '314e3e04-cb2f-46f7-83a1-013a728ef2db', 'b18e9edf-7673-4ce0-a6ba-e9da7dcbb42b', '2018-08-02 15:32:25.956582', '2018-08-02 15:32:25.956582');
+INSERT INTO `user-dashboard` VALUES ('96654c48-eaf6-4541-bf86-90d1d378576c', 0, 1, 4, 8, '4', '314e3e04-cb2f-46f7-83a1-013a728ef2db', 'b001615c-91ca-4327-8f12-4c9b9d75dcad', '2018-08-02 15:32:25.958666', '2018-08-02 15:32:25.958666');
+INSERT INTO `user-dashboard` VALUES ('be7cafb1-c538-4a6c-ae45-00f7f5c5f1de', 0, 0, 2, 3, '0', '314e3e04-cb2f-46f7-83a1-013a728ef2db', '210a5a5a-0e20-4871-8809-956d824a6395', '2018-08-02 15:32:25.947714', '2018-08-02 15:32:25.947714');
+INSERT INTO `user-dashboard` VALUES ('c3c6f092-0521-4cf0-9afa-c575feab3180', 0, 2, 4, 8, '6', '314e3e04-cb2f-46f7-83a1-013a728ef2db', '61e038bd-4957-44a5-b2f0-e2e87c6b7975', '2018-08-02 15:32:25.963383', '2018-08-02 15:32:25.963383');
+INSERT INTO `user-dashboard` VALUES ('c83f6f53-0d69-46bd-aa48-764e0c3331ad', 4, 2, 4, 8, '7', '314e3e04-cb2f-46f7-83a1-013a728ef2db', '4ace586e-104f-484c-a73e-afc4f8b1b5c4', '2018-08-02 15:32:25.966305', '2018-08-02 15:32:25.966305');
+INSERT INTO `user-dashboard` VALUES ('d73f9580-e847-477b-89f9-f2bc4449bfc3', 4, 0, 2, 3, '2', '314e3e04-cb2f-46f7-83a1-013a728ef2db', 'fce95764-83a7-4b01-bf83-2308f8e8e035', '2018-08-02 15:32:25.954327', '2018-08-02 15:32:25.954327');
+INSERT INTO `user-dashboard` VALUES ('eacec518-0a17-4be0-8ae3-21754957f54b', 4, 1, 4, 8, '5', '314e3e04-cb2f-46f7-83a1-013a728ef2db', '4b79eadd-bd7b-4c04-b14d-fc61a8459e49', '2018-08-02 15:32:25.961015', '2018-08-02 15:32:25.961015');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for user-role
