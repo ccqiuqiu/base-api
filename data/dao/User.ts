@@ -27,7 +27,7 @@ class UserDao extends BaseDao<User> {
     })
     const rows = list.map((user: User) => {
       if (user.roles.length) {
-        user.roleString = user.roles.map((role: Role) => role.name).join(',')
+        user.roleIds = user.roles.map((role: Role) => role.id)
       }
       delete user.roles
       return user
@@ -59,7 +59,7 @@ class UserDao extends BaseDao<User> {
       relations: ['roles'],
     })
     if (user && user.roles) {
-      user.roleString = user.roles.map((role: Role) => role.name).join(',')
+      user.roleIds = user.roles.map((role: Role) => role.id)
       delete user.roles
     }
     return user
